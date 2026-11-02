@@ -9,7 +9,8 @@ export namespace MallSpuApi {
     name?: string; // 商品名称
     categoryId?: number; // 商品分类
     keyword?: string; // 关键字
-    unit?: number; // 单位
+    unit?: string; // 单位
+    minQty?: number; // 最小起订量
     picUrl?: string; // 商品封面图
     sliderPicUrls?: string[]; // 商品轮播图
     introduction?: string; // 商品简介
@@ -33,6 +34,9 @@ export namespace MallSpuApi {
     createTime?: Date; // 商品创建时间
     status?: number; // 商品状态
     browseCount?: number; // 浏览量
+    metaTitle?: string; // SEO标题
+    metaDescription?: string; // SEO描述
+    slug?: string; // 语义化URL
   }
 
   /** 商品 SKU */
@@ -40,6 +44,7 @@ export namespace MallSpuApi {
     id?: number; // 商品 SKU 编号
     name?: string; // 商品 SKU 名称
     spuId?: number; // SPU 编号
+    skuCode?: string; // SKU编号/编码
     properties?: Property[]; // 属性数组
     price?: number | string; // 商品价格
     marketPrice?: number | string; // 市场价
@@ -49,6 +54,18 @@ export namespace MallSpuApi {
     stock?: number; // 库存
     weight?: number; // 商品重量，单位：kg 千克
     volume?: number; // 商品体积，单位：m^3 平米
+    minQty?: number; // 最小起订量
+    length?: number; // 长，单位：cm 厘米
+    width?: number; // 宽，单位：cm 厘米
+    height?: number; // 高，单位：cm 厘米
+    unit?: string; // 单位
+    model?: string; // 型号
+    packagingWay?: string; // 包装方式
+    pcsPerCtn?: number; // 每箱数量(PC/CTN)
+    nwPerCtn?: number; // 净重/箱(Net Weight/CTN)
+    gwPerCtn?: number; // 毛重/箱(Gross Weight/CTN)
+    hsCode?: string; // 海关编码（HS Code）
+    remark?: string; // 备注
     firstBrokeragePrice?: number | string; // 一级分销的佣金
     secondBrokeragePrice?: number | string; // 二级分销的佣金
     salesCount?: number; // 商品销量

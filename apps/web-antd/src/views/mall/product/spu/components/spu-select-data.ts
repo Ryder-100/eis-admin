@@ -136,6 +136,12 @@ export function useSkuGridColumns(): VxeGridProps['columns'] {
       align: 'center',
     },
     {
+      field: 'skuCode',
+      title: 'SKU编号',
+      minWidth: 120,
+      align: 'center',
+    },
+    {
       field: 'picUrl',
       title: '图片',
       width: 100,
@@ -164,6 +170,18 @@ export function useSkuGridColumns(): VxeGridProps['columns'] {
       formatter: ({ cellValue }) => {
         return fenToYuan(cellValue);
       },
+    },
+    {
+      field: 'minQty',
+      title: '最小起订量',
+      width: 100,
+      align: 'center',
+    },
+    {
+      field: 'unit',
+      title: '单位',
+      width: 80,
+      align: 'center',
     },
   ];
 }

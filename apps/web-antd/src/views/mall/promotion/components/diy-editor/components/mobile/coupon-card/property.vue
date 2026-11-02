@@ -5,7 +5,6 @@ import type { MallCouponTemplateApi } from '#/api/mall/promotion/coupon/couponTe
 
 import { ref, watch } from 'vue';
 
-import { useVbenModal } from '@vben/common-ui';
 import {
   CouponTemplateTakeTypeEnum,
   PromotionDiscountTypeEnum,
@@ -27,6 +26,7 @@ import {
 
 import { getCouponTemplateList } from '#/api/mall/promotion/coupon/couponTemplate';
 import UploadImg from '#/components/upload/image-upload.vue';
+import { $t } from '#/locales';
 import { ColorInput } from '#/views/mall/promotion/components';
 import CouponSelect from '#/views/mall/promotion/coupon/components/select.vue';
 
@@ -43,14 +43,11 @@ const formData = useVModel(props, 'modelValue', emit);
 
 const couponList = ref<MallCouponTemplateApi.CouponTemplate[]>([]); // 已选择的优惠券列表
 
-const [CouponSelectModal, couponSelectModalApi] = useVbenModal({
-  connectedComponent: CouponSelect,
-  destroyOnClose: true,
-});
+const couponSelectRef = ref();
 
 /** 添加优惠劵 */
 const handleAddCoupon = () => {
-  couponSelectModalApi.open();
+  couponSelectRef.value?.open();
 };
 
 /** 处理优惠劵选择 */
@@ -117,11 +114,16 @@ watch(
           </Button>
         </FormItem>
       </div>
-      <p class="text-base font-bold">优惠券样式：</p>
+      <p class="text-base font-bold">
+        {{ $t('promotion.couponCard.style') }}：
+      </p>
       <div class="flex flex-col gap-2 rounded-md p-4 shadow-lg">
-        <FormItem label="列数" name="type">
+        <FormItem :label="$t('promotion.diy.editor.style.columns')" name="type">
           <RadioGroup v-model:value="formData.columns">
-            <Tooltip title="一列" placement="bottom">
+            <Tooltip
+              :title="$t('promotion.diy.editor.style.layout.oneCol')"
+              placement="bottom"
+            >
               <RadioButton :value="1">
                 <IconifyIcon
                   icon="fluent:text-column-one-24-filled"
@@ -129,7 +131,10 @@ watch(
                 />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="二列" placement="bottom">
+            <Tooltip
+              :title="$t('promotion.diy.editor.style.layout.twoCol')"
+              placement="bottom"
+            >
               <RadioButton :value="2">
                 <IconifyIcon
                   icon="fluent:text-column-two-24-filled"
@@ -137,7 +142,10 @@ watch(
                 />
               </RadioButton>
             </Tooltip>
-            <Tooltip title="三列" placement="bottom">
+            <Tooltip
+              :title="$t('promotion.diy.editor.style.layout.threeCol')"
+              placement="bottom"
+            >
               <RadioButton :value="3">
                 <IconifyIcon
                   icon="fluent:text-column-three-24-filled"
@@ -147,7 +155,7 @@ watch(
             </Tooltip>
           </RadioGroup>
         </FormItem>
-        <FormItem label="背景图片" name="bgImg">
+        <FormItem :label="$t('promotion.diy.editor.style.bgImg')" name="bgImg">
           <UploadImg
             v-model="formData.bgImg"
             height="80px"
@@ -156,16 +164,25 @@ watch(
             :show-description="false"
           />
         </FormItem>
-        <FormItem label="文字颜色" name="textColor">
+        <FormItem
+          :label="$t('promotion.diy.editor.style.textColor')"
+          name="textColor"
+        >
           <ColorInput v-model="formData.textColor" />
         </FormItem>
-        <FormItem label="按钮背景" name="button.bgColor">
+        <FormItem
+          :label="$t('promotion.diy.editor.style.buttonBg')"
+          name="button.bgColor"
+        >
           <ColorInput v-model="formData.button.bgColor" />
         </FormItem>
-        <FormItem label="按钮文字" name="button.color">
+        <FormItem
+          :label="$t('promotion.diy.editor.style.buttonTextColor')"
+          name="button.color"
+        >
           <ColorInput v-model="formData.button.color" />
         </FormItem>
-        <FormItem label="间隔" name="space">
+        <FormItem :label="$t('promotion.diy.editor.style.space')" name="space">
           <Slider v-model:value="formData.space" :max="100" :min="0" />
         </FormItem>
       </div>
@@ -173,8 +190,9 @@ watch(
   </ComponentContainerProperty>
 
   <!-- 优惠券选择 -->
-  <CouponSelectModal
+  <CouponSelect
+    ref="couponSelectRef"
     :take-type="CouponTemplateTakeTypeEnum.USER.type"
-    @success="handleCouponSelect"
+    @change="handleCouponSelect"
   />
 </template>

@@ -13,4 +13,7 @@ export const ACTION_ICON = {
   CLOSE: 'lucide:x',
   BOOK: 'lucide:book',
   AUDIT: 'lucide:file-check',
+  TRANSLATE: 'lucide:translate',
+  CHECK: 'lucide:check-circle',
+  PAY: 'lucide:credit-card',
 };

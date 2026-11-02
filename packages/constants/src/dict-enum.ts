@@ -23,6 +23,8 @@ const SYSTEM_DICT = {
   SYSTEM_MAIL_SEND_STATUS: 'system_mail_send_status',
   SYSTEM_NOTIFY_TEMPLATE_TYPE: 'system_notify_template_type',
   SYSTEM_SOCIAL_TYPE: 'system_social_type',
+  SYSTEM_MAIL_TEMPLATE_TYPE: 'system_mail_template_type',
+  SYSTEM_MAIL_TEMPLATE_FIXED: 'system_mail_template_fixed',
 } as const;
 
 /** ========== INFRA - 基础设施模块 ========== */
@@ -95,6 +97,14 @@ const MALL_DICT = {
   BROKERAGE_RECORD_STATUS: 'brokerage_record_status', // 佣金状态
   BROKERAGE_WITHDRAW_STATUS: 'brokerage_withdraw_status', // 佣金提现状态
   BROKERAGE_WITHDRAW_TYPE: 'brokerage_withdraw_type', // 佣金提现类型
+
+  /** ========== MALL - B2B模块 ========== */
+  TRADE_B2B_RFQ_STATUS: 'trade_b2b_rfq_status', // B2B询价状态
+  TRADE_B2B_QUOTATION_STATUS: 'trade_b2b_quotation_status', // B2B报价状态
+  TRADE_B2B_INCOTERMS: 'trade_b2b_incoterms', // B2B贸易条款
+  TRADE_ORDER_APPROVAL_STATUS: 'trade_order_approval_status', // 订单审批状态
+  TRADE_ORDER_PAY_PROGRESS_STATUS: 'trade_order_pay_progress_status', // 订单付款进度
+  TRADE_ORDER_PAYMENT_METHOD: 'trade_order_payment_method', // 订单付款方式
 
   /** ========== MALL - 营销模块 ========== */
 

@@ -107,6 +107,7 @@ function convertServerMenuToRouteRecordStringComponent(
   nameSet: Set<string> = new Set(),
 ): RouteRecordStringComponent[] {
   const menus: RouteRecordStringComponent[] = [];
+
   menuList.forEach((menu) => {
     // 处理外链菜单（顶级或子级）
     if (isHttpUrl(menu.path)) {
